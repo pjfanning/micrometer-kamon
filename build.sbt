@@ -11,5 +11,8 @@ val micrometerVersion = "1.0.0-rc.9"
 
 libraryDependencies ++= Seq(
   "io.micrometer" % "micrometer-core" % micrometerVersion,
-  "io.kamon" %% "kamon-core" % kamonVersion
+  "io.kamon" %% "kamon-core" % kamonVersion,
+  "com.typesafe" % "config" % "1.3.2",
+  "org.scalatest" %% "scalatest" % "3.0.4" % "test",
+  "ch.qos.logback" % "logback-classic" % "1.2.3" % "test"
 )

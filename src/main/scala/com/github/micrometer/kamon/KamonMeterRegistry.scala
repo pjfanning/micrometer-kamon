@@ -5,10 +5,10 @@ import java.text.DecimalFormat
 import java.util.concurrent.TimeUnit
 import java.util.function.{ToDoubleFunction, ToLongFunction}
 
-import io.micrometer.core.instrument.histogram.HistogramConfig
-import io.micrometer.core.instrument.histogram.pause.PauseDetector
 import io.micrometer.core.instrument._
 import io.micrometer.core.instrument.cumulative.{CumulativeDistributionSummary, CumulativeFunctionCounter, CumulativeFunctionTimer}
+import io.micrometer.core.instrument.histogram.HistogramConfig
+import io.micrometer.core.instrument.histogram.pause.PauseDetector
 import io.micrometer.core.instrument.internal.{DefaultLongTaskTimer, DefaultMeter}
 import io.micrometer.core.instrument.simple.{CountingMode, SimpleConfig}
 import io.micrometer.core.instrument.step.StepDistributionSummary
