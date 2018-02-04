@@ -1,6 +1,7 @@
 package com.github.micrometer
 
 import java.lang.{Iterable => JIterable}
+import java.util.function.ToDoubleFunction
 
 import scala.collection.JavaConverters._
 import scala.concurrent.duration.{Duration, FiniteDuration}
@@ -21,5 +22,11 @@ package object kamon {
   def asMap(tags: JIterable[Tag]): Map[String, String] = {
     val seq =tags.asScala .map { tag => (tag.getKey, tag.getValue) }
     seq.toMap
+  }
+
+  def asJava[T](op: T => Double) = {
+    new ToDoubleFunction[T] {
+      override def applyAsDouble(t: T): Double = op(t)
+    }
   }
 }
