@@ -5,6 +5,7 @@ import java.util.function.ToDoubleFunction
 
 import scala.collection.concurrent.TrieMap
 import scala.collection.mutable.ListBuffer
+import scala.util.control.NonFatal
 
 import io.micrometer.core.instrument.{AbstractMeter, Gauge, Meter}
 import kamon.Kamon
@@ -13,7 +14,13 @@ object KamonGauge {
   private[kamon] val map = TrieMap[Meter.Id, KamonGauge[_]]()
 
   def apply[T](id: Meter.Id, obj: T, valueFunction: ToDoubleFunction[T]): Gauge = {
-    val gauge = map.getOrElseUpdate(id, new KamonGauge(id))
+    val gauge = {
+      try {
+        map.getOrElseUpdate(id, new KamonGauge(id))
+      } catch {
+        case NonFatal(t) => map.get(id).get
+      }
+    }
     gauge.track(obj, valueFunction)
   }
 }
