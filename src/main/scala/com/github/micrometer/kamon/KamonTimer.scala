@@ -2,14 +2,14 @@ package com.github.micrometer.kamon
 
 import java.util.concurrent.TimeUnit
 
-import io.micrometer.core.instrument.histogram.HistogramConfig
-import io.micrometer.core.instrument.histogram.pause.PauseDetector
+import io.micrometer.core.instrument.distribution.DistributionStatisticConfig
+import io.micrometer.core.instrument.distribution.pause.PauseDetector
 import io.micrometer.core.instrument.util.TimeUtils
 import io.micrometer.core.instrument.{AbstractTimer, Meter, Timer}
 import kamon.Kamon
 
-class KamonTimer(id: Meter.Id, histogramConfig: HistogramConfig, pauseDetector: PauseDetector)
-  extends AbstractTimer(id, KamonClock, histogramConfig, pauseDetector, TimeUnit.NANOSECONDS) with Timer {
+class KamonTimer(id: Meter.Id, config: DistributionStatisticConfig, pauseDetector: PauseDetector)
+  extends AbstractTimer(id, KamonClock, config, pauseDetector, TimeUnit.NANOSECONDS) with Timer {
 
   val kamonTimer = Kamon.timer(id.getName).refine(asMap(id.getTags))
   val simpleTimer = Timer.builder(id.getName).tags(id.getTags).register(simpleMeterRegistry)
