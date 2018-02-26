@@ -10,7 +10,7 @@ scalacOptions += "-target:jvm-1.8"
 
 resolvers += Resolver.bintrayRepo("kamon-io", "releases")
 
-val kamonVersion = "1.0.1"
+val kamonVersion = "1.1.0"
 val micrometerVersion = "1.0.0"
 
 libraryDependencies ++= Seq(
