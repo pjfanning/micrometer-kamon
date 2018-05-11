@@ -2,16 +2,16 @@ organization := "com.github.pjfanning"
 
 name := "micrometer-kamon"
 
-scalaVersion := "2.12.5"
+scalaVersion := "2.12.6"
 
-crossScalaVersions := Seq("2.11.12", "2.12.5")
+crossScalaVersions := Seq("2.11.12", "2.12.6")
 
 scalacOptions += "-target:jvm-1.8"
 
 resolvers += Resolver.bintrayRepo("kamon-io", "releases")
 
-val kamonVersion = "1.1.0"
-val micrometerVersion = "1.0.3"
+val kamonVersion = "1.1.2"
+val micrometerVersion = "1.0.4"
 
 libraryDependencies ++= Seq(
   "io.micrometer" % "micrometer-core" % micrometerVersion,
